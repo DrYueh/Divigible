@@ -43,6 +43,11 @@ public class Tile : MonoBehaviour
 
 		transform.position = objectPosition;
 		rayCastToTarget();
+		if (!_overTarget)
+		{
+			target = null;
+			targetPosition = _homePosition;
+		}
 	}
 
 	void OnMouseUp()

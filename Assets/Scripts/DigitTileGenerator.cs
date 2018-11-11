@@ -30,5 +30,13 @@ public class DigitTileGenerator : MonoBehaviour
 		GameObject obj = Instantiate(prefab, location, Quaternion.identity);
 		obj.GetComponent<Tile>().value = value;
 		obj.GetComponent<Tile>().layerToTarget = 15;
+		
+		
+		Debug.Log(value);
+		GameObject digit = (GameObject)Instantiate(Resources.Load("Prefabs/" + value.ToString()));
+		digit.GetComponent<DigitValue>().integerValue = value;
+		digit.GetComponent<DigitValue>().orderOfMagnitude = 1;
+		digit.transform.parent = obj.transform;
+		digit.transform.position = obj.transform.position;
 	}
 }
