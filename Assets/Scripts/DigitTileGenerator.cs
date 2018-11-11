@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,13 +31,48 @@ public class DigitTileGenerator : MonoBehaviour
 		GameObject obj = Instantiate(prefab, location, Quaternion.identity);
 		obj.GetComponent<Tile>().value = value;
 		obj.GetComponent<Tile>().layerToTarget = 15;
+		obj.transform.localScale = new Vector3(((value / 10) * 0.1f + 1), 1, 0.2f);
 		
+		if ((value < 10) && (value >= 0))
+		{
+			GameObject digit = (GameObject)Instantiate(Resources.Load("Prefabs/" + value.ToString()));
+			digit.GetComponent<DigitValue>().integerValue = value;
+			digit.GetComponent<DigitValue>().orderOfMagnitude = 1;
+			digit.transform.parent = obj.transform;
+			digit.transform.position = obj.transform.position;
+		}
+
+		if (value > 10)
+		{
+			largerValue(value, obj);
+		}
+	}
+
+	// WIP code
+	private void largerValue(int value, GameObject parent)
+	{
+		string valueAsString = value.ToString();
+		int magnitude = valueAsString.Length;
+
+		int index = 0;
+		foreach (char digitText in valueAsString)
+		{
+			GameObject digit = (GameObject)Instantiate(Resources.Load("Prefabs/" + digitText));
+			digit.GetComponent<DigitValue>().integerValue = Int32.Parse(digitText.ToString());
+			digit.GetComponent<DigitValue>().orderOfMagnitude = magnitude;
+
+			digit.transform.parent = parent.transform;
+			digit.transform.localPosition = new Vector3(digitXOffset(index), 0);
+
+			index += 1;
+		}
 		
-		Debug.Log(value);
-		GameObject digit = (GameObject)Instantiate(Resources.Load("Prefabs/" + value.ToString()));
-		digit.GetComponent<DigitValue>().integerValue = value;
-		digit.GetComponent<DigitValue>().orderOfMagnitude = 1;
-		digit.transform.parent = obj.transform;
-		digit.transform.position = obj.transform.position;
+	}
+	
+	private float digitXOffset(int index)
+	{
+		Transform template = ((GameObject)Instantiate(Resources.Load("Prefabs/0"))).transform.GetChild(0);
+		float width = template.gameObject.GetComponent<Renderer>().bounds.size.x;
+		return width * index;
 	}
 }
