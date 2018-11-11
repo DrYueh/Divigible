@@ -6,13 +6,43 @@ using System;
 [RequireComponent(typeof(Puzzle))]
 [ExecuteInEditMode]
 public class PuzzleProvider : MonoBehaviour {
-    public int nLeaves;
+    public int nLeaves = 4;
+    public string wildLeaf = "?";
+    public string wildOp = ".";
+    public char separator = ' ';
+    public string definition = "? . ? . ? = ?";
     [SerializeField] private LeafProvider[] leafProviders;
     [SerializeField] private OpProvider[] opProviders;
     public Puzzle puzzle { get { return GetComponent<Puzzle>(); } }
 
 	// Use this for initialization
 	void Start () {
+#if UNITY_EDITOR
+        if (!Application.isPlaying) return;
+#endif
+        string[] bits = definition.Split(separator);
+        
+        puzzle.setNLeaves(bits.Length - 1 / 2);
+        puzzle.setLeaf(0, leaf(bits[0]));
+        for (int i = 0; i < bits.Length; i += 2) {
+            if (i % 2 == 0) {
+                int? l = leaf(bits[i]);
+                puzzle.setLeaf(i / 2, l);
+                puzzle.setGivenLeaf(i / 2, l != null);
+                
+                if (l != null) {
+                    createTile(leafProviders[i / 2].transform.position, (int)l);
+                }
+            } else {
+                string o = op(bits[i]);
+                puzzle.setOp((i - 1) / 2, o);
+                puzzle.setGivenOp((i - 1) / 2, o != null);
+
+                if (o != null) {
+                    // TODO generate tile
+                }
+            } 
+        }
 	}
 	
 	// Update is called once per frame
@@ -54,5 +84,17 @@ public class PuzzleProvider : MonoBehaviour {
             string op = opProviders[i] == null ? null : opProviders[i].op;
             p.setOp(i, op);
         }
+    }
+    
+    int? leaf(string s) {
+        return s == "?" ? (int?)null : int.Parse(s);
+    }
+    
+    string op(string s) {
+        return s == "." ? null : s;
+    }
+    
+    void createTile(Vector3 location, int value) {
+        GameObject.Find("TileCreator").GetComponent<DigitTileGenerator>().generateTile(location, value);
     }
 }
