@@ -5,5 +5,5 @@ using UnityEngine;
 public class DigitValue : MonoBehaviour
 {
     public int integerValue;
-    public int orderOfMagnitude;
+    public double orderOfMagnitude;
 }
