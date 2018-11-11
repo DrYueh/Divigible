@@ -21,7 +21,7 @@ public class Tile : MonoBehaviour
 		}
 	}
 
-	private Boolean _dragging = false;
+	private Boolean _dragging;
 	void OnMouseDrag()
 	{
 		_dragging = true;
@@ -29,6 +29,7 @@ public class Tile : MonoBehaviour
 		Vector3 objectPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
 		transform.position = objectPosition;
+		rayCastToTarget();
 	}
 
 	void OnMouseUp()
@@ -38,32 +39,27 @@ public class Tile : MonoBehaviour
 
 	void slide()
 	{
-		Vector3 position = overTarget() ? targetPosition : homePosition;
+		Vector3 position = _overTarget ? targetPosition : homePosition;
 		slideToPoint(position);
 	}
 
-	Boolean overTarget()
+	private Boolean _overTarget;
+	void rayCastToTarget()
 	{
 		// Bit shift the index of the layer (15) to get a bit mask
 		int layerMask = 1 << 15;
-
-		// This will cast rays only against colliders in layer 15.
 		RaycastHit hit;
-		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+		_overTarget = Physics.Raycast(
+			transform.position, 
+			transform.TransformDirection(Vector3.forward), 
+			out hit, Mathf.Infinity, 
+			layerMask
+		);
+
+		if (_overTarget)
 		{
-			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-			Debug.Log("Did Hit");
+			targetPosition = hit.transform.position;
 		}
-		else
-		{
-			Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-			Debug.Log("Did not Hit");
-		}
-		
-		// I'm thinking ray-cast back until you hit either a "target" or an invisible "non-target" field.
-		// non-target field is a large plane that rests right below any valid targets, so other targets on the (future)
-		// wheel won't be able to be targeted, because they should be behind this plane.
-		return false;
 	}
 
 	void slideToPoint(Vector3 point)
