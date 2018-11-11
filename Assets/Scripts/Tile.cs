@@ -15,9 +15,12 @@ public class Tile : MonoBehaviour
 	public Vector3 targetPosition; // if over a valid slot, will slide to this point.
 	private GameObject target;
 
+	public AudioClip clickInSound;
+
 	void Start()
 	{
 		_homePosition = transform.position;
+		GetComponent<AudioSource>().clip = clickInSound;
 	}
 	
 	// Update is called once per frame
@@ -53,6 +56,10 @@ public class Tile : MonoBehaviour
 	void OnMouseUp()
 	{
 		_dragging = false;
+		if (_weShouldPlayClickSound)
+		{
+			playClickSound();
+		}
 	}
 
 	void slide()
@@ -67,6 +74,7 @@ public class Tile : MonoBehaviour
 	}
 	
 	private Boolean _overTarget;
+	private Boolean _weShouldPlayClickSound;
 	void rayCastToTarget()
 	{
 		int layerMask = 1 << layerToTarget;
@@ -82,11 +90,13 @@ public class Tile : MonoBehaviour
 		{
 			target = hit.transform.gameObject;
 			transform.SetParent(hit.transform);
+			_weShouldPlayClickSound = true;
 		}
 		else
 		{
 			target = null;
 			transform.SetParent(null);
+			_weShouldPlayClickSound = false;
 		}
 	}
 
@@ -98,5 +108,11 @@ public class Tile : MonoBehaviour
 	private Boolean lockedIn()
 	{
 		return ((transform.position == _homePosition) || (transform.position == targetPosition));
+	}
+
+	private void playClickSound()
+	{
+		GetComponent<AudioSource>().Play();
+		print("click");
 	}
 }

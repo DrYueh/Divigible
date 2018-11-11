@@ -77,7 +77,6 @@ public class DigitTileGenerator : MonoBehaviour
 		int index = 0;
 		foreach (char digitText in valueAsString)
 		{
-			print("making: " + digitText);
 			GameObject digit = (GameObject)Instantiate(Resources.Load("Prefabs/" + digitText));
 			digit.GetComponent<DigitValue>().integerValue = Int32.Parse(digitText.ToString());
 			digit.GetComponent<DigitValue>().orderOfMagnitude = magnitude;
