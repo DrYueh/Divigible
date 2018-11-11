@@ -10,6 +10,8 @@
           <e p="DigitTileGenerator.cs" t="Include" />
           <e p="DigitValue.cs" t="Include" />
           <e p="GenerateResultTile.cs" t="Include" />
+          <e p="Puzzle.cs" t="Include" />
+          <e p="PuzzleTest.cs" t="Include" />
           <e p="Tile.cs" t="Include" />
         </e>
       </e>
