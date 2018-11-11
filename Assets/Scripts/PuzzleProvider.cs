@@ -31,7 +31,8 @@ public class PuzzleProvider : MonoBehaviour {
                 puzzle.setGivenLeaf(i / 2, l != null);
                 
                 if (l != null) {
-                    createTile(leafProviders[i / 2].transform.position, (int)l);
+                    Tile tile = createTile(leafProviders[i / 2].transform.position, (int)l);
+                    tile.canDrag = false;
                 }
             } else {
                 string o = op(bits[i]);
@@ -94,7 +95,7 @@ public class PuzzleProvider : MonoBehaviour {
         return s == "." ? null : s;
     }
     
-    void createTile(Vector3 location, int value) {
-        GameObject.Find("TileCreator").GetComponent<DigitTileGenerator>().generateTile(location, value);
+    Tile createTile(Vector3 location, int value) {
+        return GameObject.Find("TileCreator").GetComponent<DigitTileGenerator>().generateTile(location, value);
     }
 }

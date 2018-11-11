@@ -11,6 +11,7 @@ public class Tile : MonoBehaviour
 	public string tileOperator = null;
 	public int layerToTarget;
 	
+    public bool canDrag = true; // Is the tile allowed to move
 	private Vector3 _homePosition; // where it will slide back to if not over a valid slot
 	public Vector3 targetPosition; // if over a valid slot, will slide to this point.
 	private GameObject target;
@@ -40,6 +41,8 @@ public class Tile : MonoBehaviour
 	private Boolean _dragging;
 	void OnMouseDrag()
 	{
+        if (!canDrag) return;
+
 		_dragging = true;
 		Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, _distanceFromCamera);
 		Vector3 objectPosition = Camera.main.ScreenToWorldPoint(mousePosition);
