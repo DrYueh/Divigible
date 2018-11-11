@@ -9,9 +9,14 @@ public class Tile : MonoBehaviour
 	
 	public int _value;
 	
-	public Vector3 homePosition; // where it will slide back to if not over a valid slot
+	private Vector3 _homePosition; // where it will slide back to if not over a valid slot
 	public Vector3 targetPosition; // if over a valid slot, will slide to this point.
 
+	void Start()
+	{
+		_homePosition = transform.position;
+	}
+	
 	// Update is called once per frame
 	void Update ()
 	{
@@ -39,7 +44,7 @@ public class Tile : MonoBehaviour
 
 	void slide()
 	{
-		Vector3 position = _overTarget ? targetPosition : homePosition;
+		Vector3 position = _overTarget ? targetPosition : _homePosition;
 		slideToPoint(position);
 	}
 
