@@ -6,7 +6,7 @@ using System.Linq;
 
 public class Puzzle : MonoBehaviour {
 
-	public int nLeaves;
+	[SerializeField] private int nLeaves;
 	private int?[] leaves;
 	private string[] ops;
 
@@ -30,6 +30,10 @@ public class Puzzle : MonoBehaviour {
 		givenLeaf = new bool[nLeaves];
 		givenOp = new bool[nLeaves - 1];
 	}
+    
+    public int getNLeaves() {
+        return this.nLeaves;
+    }
 
 	public void clear() {
 		for (int i = 0; i < nLeaves; ++i) {
