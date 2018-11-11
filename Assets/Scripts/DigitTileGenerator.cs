@@ -8,8 +8,8 @@ public class DigitTileGenerator : MonoBehaviour
 {
 	public GameObject prefab;
 	public int numberOfObjects = 10;
-	public Vector2 start;
-	public Vector2 end;
+	public Vector3 start;
+	public Vector3 end;
 
 	private float _charWidth;
 	private float _kerning = 0.05f;
@@ -20,7 +20,7 @@ public class DigitTileGenerator : MonoBehaviour
 	{	
 		for (int i = 0; i < numberOfObjects; i++)
 		{
-			Vector3 pos = new Vector3(xCoord(i), start.y, 0.3f);
+			Vector3 pos = new Vector3(xCoord(i), start.y, start.z);
 			generateTile(pos, i);
 		}
 	}
@@ -36,7 +36,6 @@ public class DigitTileGenerator : MonoBehaviour
 	{
 		// Get width of characters
 		_charWidth = getTemplate().gameObject.GetComponent<Renderer>().bounds.size.x;
-		
 
 		if ((value < 10) && (value >= 0))
 		{		
