@@ -32,14 +32,15 @@ public class DigitTileGenerator : MonoBehaviour
 		return fraction * totalDistance + start.x;
 	}
 
-	public void generateTile(Vector3 location, int value)
+	public Tile generateTile(Vector3 location, int value)
 	{
 		// Get width of characters
 		_charWidth = getTemplate().gameObject.GetComponent<Renderer>().bounds.size.x;
+		GameObject obj = null;
 
 		if ((value < 10) && (value >= 0))
 		{		
-			GameObject obj = Instantiate(prefab, location, Quaternion.identity);
+			obj = Instantiate(prefab, location, Quaternion.identity);
 			obj.GetComponent<Tile>().value = value;
 			obj.GetComponent<Tile>().layerToTarget = 15;
 			float widthTotal = (value.ToString().Length) * _charWidth;
@@ -58,12 +59,14 @@ public class DigitTileGenerator : MonoBehaviour
 
 		if (value >= 10)
 		{
-			printLargerNumber(value, location);
+			obj = printLargerNumber(value, location);
 		}
+
+		return (obj != null) ? obj.GetComponent<Tile>() : null;
 	}
 
 	// Beware ye who ventures into this janky code and may god have mercy on you
-	private void printLargerNumber(int value, Vector3 location)
+	private GameObject printLargerNumber(int value, Vector3 location)
 	{
 		string valueAsString = value.ToString();
 		double magnitude = Math.Pow(10, valueAsString.Length-1);
@@ -104,6 +107,8 @@ public class DigitTileGenerator : MonoBehaviour
 		{
 			digit.transform.parent = obj.transform;
 		}
+
+		return obj;
 	}
 	
 	private Transform getTemplate()
