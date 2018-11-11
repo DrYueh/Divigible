@@ -10,7 +10,8 @@ public class Puzzle : MonoBehaviour {
 	private int?[] leaves;
 	private string[] ops;
 
-
+	private bool[] givenLeaf;
+	private bool[] givenOp;
 
 	// Use this for initialization
 	void Start () {
@@ -24,21 +25,52 @@ public class Puzzle : MonoBehaviour {
 
 	public void setNLeaves(int nLeaves) {
 		this.nLeaves = nLeaves;
-		this.clear ();
+		leaves = new int?[nLeaves];
+		ops = new string[nLeaves - 1];
+		givenLeaf = new bool[nLeaves];
+		givenOp = new bool[nLeaves - 1];
 	}
 
 	public void clear() {
-		leaves = new int?[nLeaves];
-		ops = new string[nLeaves - 1];
+		for (int i = 0; i < nLeaves; ++i) {
+			if (!givenLeaf[i]) leaves[i] = null;
+		}
+		for (int i = 0; i < nLeaves - 1; ++i) {
+			if (!givenOp[i]) ops[i] = null;
+		}
 	}
 
 	public void setLeaf(int i, int? v) {
-		leaves [i] = v;
+		if (!givenLeaf[i]) {
+			leaves [i] = v;
+		} else {
+			throw new LeafIsGivenException("You cannot assign to a leaf that is given as part of the puzzle.");
+		}
 	}
 
 	public void setOp(int i, string v) {
-		ops [i] = v;
+		if (!givenOp[i]) {
+			ops [i] = v;
+		} else {
+			throw new OpIsGivenException("You cannot assign to an op that is given as part of the puzzle.");
+		}
 	}
+
+	public void setGivenLeaf(int i, bool given) {
+		givenLeaf[i] = given;
+	}
+
+	public void setGivenOp(int i, bool given) {
+		givenOp[i] = given;
+	}
+
+	public bool isLockedLeaf(int i) {
+		return givenLeaf[i];
+	}
+	
+	public bool isLockedOp(int i) {
+		return givenOp[i];
+	} 
 
 	public bool eval() {
 		List<int?> leaves = new List<int?> (this.leaves);
@@ -80,7 +112,7 @@ public class Puzzle : MonoBehaviour {
 		return false;
 	}
 
-	public string ToString() {
+	public override string ToString() {
 		string s = leaves [0].ToString ();
 
 		for (int i = 1; i < leaves.Count (); ++i) {
@@ -110,4 +142,12 @@ public static class Operators {
 		order [2] = new string[] { "=" };
 		ops ["="] = (a, b) => a == b;
 	}
+}
+
+public class LeafIsGivenException : Exception {
+	public LeafIsGivenException(string message) : base(message) {}
+}
+
+public class OpIsGivenException : Exception {
+	public OpIsGivenException(string message) : base(message) {}
 }
