@@ -7,7 +7,9 @@ public class Tile : MonoBehaviour
 {
 	private int _distanceFromCamera = 10;
 	
-	public int _value;
+	public int value;
+	public string tileOperator = null;
+	public int layerToTarget;
 	
 	private Vector3 _homePosition; // where it will slide back to if not over a valid slot
 	public Vector3 targetPosition; // if over a valid slot, will slide to this point.
@@ -48,15 +50,19 @@ public class Tile : MonoBehaviour
 		slideToPoint(position);
 	}
 
+	void slideToPoint(Vector3 point)
+	{
+		transform.position = Vector3.MoveTowards(transform.position, point, 1);
+	}
+	
 	private Boolean _overTarget;
 	void rayCastToTarget()
 	{
-		// Bit shift the index of the layer (15) to get a bit mask
-		int layerMask = 1 << 15;
+		int layerMask = 1 << layerToTarget;
 		RaycastHit hit;
 		_overTarget = Physics.Raycast(
 			transform.position, 
-			transform.TransformDirection(Vector3.forward), 
+			Camera.main.transform.TransformDirection(Camera.main.transform.forward), 
 			out hit, Mathf.Infinity, 
 			layerMask
 		);
@@ -67,8 +73,4 @@ public class Tile : MonoBehaviour
 		}
 	}
 
-	void slideToPoint(Vector3 point)
-	{
-		transform.position = Vector3.MoveTowards(transform.position, point, 1);
-	}
 }

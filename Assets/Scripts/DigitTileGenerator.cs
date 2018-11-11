@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenerateDigitTiles : MonoBehaviour
+public class DigitTileGenerator : MonoBehaviour
 {
 	public GameObject prefab;
 	public int numberOfObjects = 10;
@@ -13,8 +13,8 @@ public class GenerateDigitTiles : MonoBehaviour
 	{
 		for (int i = 0; i < numberOfObjects; i++)
 		{
-			Vector3 pos = new Vector3(xCoord(i), start.y, 0);
-			Instantiate(prefab, pos, Quaternion.identity);
+			Vector3 pos = new Vector3(xCoord(i), start.y, 0.3f);
+			generateTile(pos, i);
 		}
 	}
 
@@ -23,5 +23,12 @@ public class GenerateDigitTiles : MonoBehaviour
 		float totalDistance = end.x - start.x;
 		float fraction = i / (float) numberOfObjects;
 		return fraction * totalDistance + start.x;
+	}
+
+	public void generateTile(Vector3 location, int value)
+	{
+		GameObject obj = Instantiate(prefab, location, Quaternion.identity);
+		obj.GetComponent<Tile>().value = value;
+		obj.GetComponent<Tile>().layerToTarget = 15;
 	}
 }
