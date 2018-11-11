@@ -13,6 +13,7 @@ public class Tile : MonoBehaviour
 	
 	private Vector3 _homePosition; // where it will slide back to if not over a valid slot
 	public Vector3 targetPosition; // if over a valid slot, will slide to this point.
+	private GameObject target;
 
 	void Start()
 	{
@@ -22,9 +23,14 @@ public class Tile : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (!_dragging)
+		if (!_dragging && !lockedIn())
 		{
 			slide();
+		}
+
+		if (target != null)
+		{
+			targetPosition = target.transform.position;
 		}
 	}
 
@@ -52,7 +58,7 @@ public class Tile : MonoBehaviour
 
 	void slideToPoint(Vector3 point)
 	{
-		transform.position = Vector3.MoveTowards(transform.position, point, 1);
+		transform.position = Vector3.MoveTowards(transform.position, point, 1.5f);
 	}
 	
 	private Boolean _overTarget;
@@ -67,10 +73,25 @@ public class Tile : MonoBehaviour
 			layerMask
 		);
 
-		if (_overTarget)
+		if (_overTarget && hitNotOccupied(hit))
 		{
-			targetPosition = hit.transform.position;
+			target = hit.transform.gameObject;
+			transform.SetParent(hit.transform);
+		}
+		else
+		{
+			target = null;
+			transform.SetParent(null);
 		}
 	}
 
+	private Boolean hitNotOccupied(RaycastHit hit)
+	{
+		return (hit.transform.childCount < 1) || ((hit.transform.childCount == 1) && (hit.transform.GetChild(0) == transform));
+	}
+
+	private Boolean lockedIn()
+	{
+		return ((transform.position == _homePosition) || (transform.position == targetPosition));
+	}
 }
