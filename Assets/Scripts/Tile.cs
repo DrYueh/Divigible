@@ -39,7 +39,7 @@ public class Tile : MonoBehaviour
 	void slide()
 	{
 		Vector3 position = overTarget() ? targetPosition : homePosition;
-		slideToPoint(homePosition);
+		slideToPoint(position);
 	}
 
 	Boolean overTarget()
