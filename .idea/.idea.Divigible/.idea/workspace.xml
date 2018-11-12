@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0960f81e-845f-40b2-b0b4-b5d04080fb22" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Divigible/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Divigible/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-    </list>
+    <list default="true" id="0960f81e-845f-40b2-b0b4-b5d04080fb22" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,8 +144,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Joystick.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+            <state relative-caret-position="315">
+              <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
               <folding>
                 <marker date="1541981022169" expanded="false" signature="6:78" ph="..." />
                 <marker date="1541981022169" expanded="true" signature="118:621" ph="{...}" />
@@ -307,12 +304,12 @@
       <option name="presentableId" value="Default" />
       <updated>1541887474214</updated>
       <workItem from="1541887476395" duration="61000" />
-      <workItem from="1541887685090" duration="47135000" />
+      <workItem from="1541887685090" duration="47699000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47196000" />
+    <option name="totallyTimeSpent" value="47760000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -327,7 +324,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18656716" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18656716" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Unity" />
@@ -344,7 +341,7 @@
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Unit Tests" order="11" />
       <window_info anchor="bottom" id="Terminal" order="12" />
-      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="13" side_tool="true" visible="true" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -448,21 +445,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Joystick.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <marker date="1541981022169" expanded="false" signature="6:78" ph="..." />
-            <marker date="1541981022169" expanded="true" signature="118:621" ph="{...}" />
-            <marker date="1541981022169" expanded="true" signature="168:175" ph="{...}" />
-            <marker date="1541981022169" expanded="true" signature="230:237" ph="{...}" />
-            <marker date="1541981022169" expanded="true" signature="259:619" ph="{...}" />
-            <marker date="1541981022169" expanded="true" signature="265:616" ph="/* _dragging = true; ... */" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/DigitTileGenerator.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="431">
@@ -519,6 +501,21 @@
             <marker date="1541982531650" expanded="true" signature="2268:2396" ph="{...}" />
             <marker date="1541982531650" expanded="true" signature="2425:2523" ph="{...}" />
             <marker date="1541982531650" expanded="true" signature="2555:2599" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Joystick.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding>
+            <marker date="1541981022169" expanded="false" signature="6:78" ph="..." />
+            <marker date="1541981022169" expanded="true" signature="118:621" ph="{...}" />
+            <marker date="1541981022169" expanded="true" signature="168:175" ph="{...}" />
+            <marker date="1541981022169" expanded="true" signature="230:237" ph="{...}" />
+            <marker date="1541981022169" expanded="true" signature="259:619" ph="{...}" />
+            <marker date="1541981022169" expanded="true" signature="265:616" ph="/* _dragging = true; ... */" />
           </folding>
         </state>
       </provider>
