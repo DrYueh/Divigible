@@ -5,19 +5,23 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-	private int _distanceFromCamera = 10;
+	private int _distanceFromCamera = 13;
 	
 	public int value;
 	public string tileOperator = null;
 	public int layerToTarget;
 	
+    public bool canDrag = true; // Is the tile allowed to move
 	private Vector3 _homePosition; // where it will slide back to if not over a valid slot
 	public Vector3 targetPosition; // if over a valid slot, will slide to this point.
 	private GameObject target;
 
+	public AudioClip clickInSound;
+
 	void Start()
 	{
 		_homePosition = transform.position;
+		GetComponent<AudioSource>().clip = clickInSound;
 	}
 	
 	// Update is called once per frame
@@ -37,6 +41,8 @@ public class Tile : MonoBehaviour
 	private Boolean _dragging;
 	void OnMouseDrag()
 	{
+        if (!canDrag) return;
+
 		_dragging = true;
 		Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, _distanceFromCamera);
 		Vector3 objectPosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -53,6 +59,10 @@ public class Tile : MonoBehaviour
 	void OnMouseUp()
 	{
 		_dragging = false;
+		if (_weShouldPlayClickSound)
+		{
+			playClickSound();
+		}
 	}
 
 	void slide()
@@ -67,6 +77,7 @@ public class Tile : MonoBehaviour
 	}
 	
 	private Boolean _overTarget;
+	private Boolean _weShouldPlayClickSound;
 	void rayCastToTarget()
 	{
 		int layerMask = 1 << layerToTarget;
@@ -82,11 +93,13 @@ public class Tile : MonoBehaviour
 		{
 			target = hit.transform.gameObject;
 			transform.SetParent(hit.transform);
+			_weShouldPlayClickSound = true;
 		}
 		else
 		{
 			target = null;
 			transform.SetParent(null);
+			_weShouldPlayClickSound = false;
 		}
 	}
 
@@ -98,5 +111,10 @@ public class Tile : MonoBehaviour
 	private Boolean lockedIn()
 	{
 		return ((transform.position == _homePosition) || (transform.position == targetPosition));
+	}
+
+	private void playClickSound()
+	{
+		GetComponent<AudioSource>().Play();
 	}
 }

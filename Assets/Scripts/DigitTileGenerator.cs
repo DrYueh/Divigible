@@ -8,8 +8,8 @@ public class DigitTileGenerator : MonoBehaviour
 {
 	public GameObject prefab;
 	public int numberOfObjects = 10;
-	public Vector2 start;
-	public Vector2 end;
+	public Vector3 start;
+	public Vector3 end;
 
 	private float _charWidth;
 	private float _kerning = 0.05f;
@@ -20,7 +20,7 @@ public class DigitTileGenerator : MonoBehaviour
 	{	
 		for (int i = 0; i < numberOfObjects; i++)
 		{
-			Vector3 pos = new Vector3(xCoord(i), start.y, 0.3f);
+			Vector3 pos = new Vector3(xCoord(i), start.y, start.z);
 			generateTile(pos, i);
 		}
 	}
@@ -32,15 +32,15 @@ public class DigitTileGenerator : MonoBehaviour
 		return fraction * totalDistance + start.x;
 	}
 
-	public void generateTile(Vector3 location, int value)
+	public Tile generateTile(Vector3 location, int value)
 	{
 		// Get width of characters
 		_charWidth = getTemplate().gameObject.GetComponent<Renderer>().bounds.size.x;
-		
+		GameObject obj = null;
 
 		if ((value < 10) && (value >= 0))
 		{		
-			GameObject obj = Instantiate(prefab, location, Quaternion.identity);
+			obj = Instantiate(prefab, location, Quaternion.identity);
 			obj.GetComponent<Tile>().value = value;
 			obj.GetComponent<Tile>().layerToTarget = 15;
 			float widthTotal = (value.ToString().Length) * _charWidth;
@@ -59,12 +59,14 @@ public class DigitTileGenerator : MonoBehaviour
 
 		if (value >= 10)
 		{
-			printLargerNumber(value, location);
+			obj = printLargerNumber(value, location);
 		}
+
+		return (obj != null) ? obj.GetComponent<Tile>() : null;
 	}
 
 	// Beware ye who ventures into this janky code and may god have mercy on you
-	private void printLargerNumber(int value, Vector3 location)
+	private GameObject printLargerNumber(int value, Vector3 location)
 	{
 		string valueAsString = value.ToString();
 		double magnitude = Math.Pow(10, valueAsString.Length-1);
@@ -78,7 +80,6 @@ public class DigitTileGenerator : MonoBehaviour
 		int index = 0;
 		foreach (char digitText in valueAsString)
 		{
-			print("making: " + digitText);
 			GameObject digit = (GameObject)Instantiate(Resources.Load("Prefabs/" + digitText));
 			digit.GetComponent<DigitValue>().integerValue = Int32.Parse(digitText.ToString());
 			digit.GetComponent<DigitValue>().orderOfMagnitude = magnitude;
@@ -106,6 +107,8 @@ public class DigitTileGenerator : MonoBehaviour
 		{
 			digit.transform.parent = obj.transform;
 		}
+
+		return obj;
 	}
 	
 	private Transform getTemplate()
