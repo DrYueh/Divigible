@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 	private Dictionary<int, string> testMap = new Dictionary<int, string>();
     
     public bool GameOver() {
-        return puzzleSolved() || Time.time > timeLimit;
+        return puzzleSolved() || Time.timeSinceLevelLoad > timeLimit;
     }
     
     public bool puzzleSolved() {

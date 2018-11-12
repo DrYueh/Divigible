@@ -14,14 +14,14 @@ public class ImageFade : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (!fading && (Time.time + fadePeriod > gameManager.timeLimit || gameManager.GameOver())) {
+        if (!fading && (Time.timeSinceLevelLoad + fadePeriod > gameManager.timeLimit || gameManager.GameOver())) {
             fading = true;
-            startFade = Time.time;
+            startFade = Time.timeSinceLevelLoad;
         }
         if (fading) {
             Image image = GetComponent<Image>();
             Color color = gameManager.puzzleSolved() ? win : lose;
-            image.color = new Color(color.r, color.g, color.b, Mathf.Clamp((Time.time - startFade) / fadePeriod, 0, 1));
+            image.color = new Color(color.r, color.g, color.b, Mathf.Clamp((Time.timeSinceLevelLoad - startFade) / fadePeriod, 0, 1));
         }
 	}
 }
