@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -657,6 +657,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 114254855371641440, guid: 05854c44e4fb48f439b759512f02e927,
+        type: 2}
+      propertyPath: puzzleCylinder
+      value: 
+      objectReference: {fileID: 1126545702}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05854c44e4fb48f439b759512f02e927, type: 2}
   m_IsPrefabAsset: 0
@@ -1071,6 +1076,7 @@ GameObject:
   - component: {fileID: 1126545700}
   - component: {fileID: 1126545699}
   - component: {fileID: 1126545698}
+  - component: {fileID: 1126545702}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -1149,6 +1155,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1126545702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1126545697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6b839d405299047aecf40fb8d20222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 284173593}
 --- !u!1001 &1130039632
 Prefab:
   m_ObjectHideFlags: 0
@@ -2240,6 +2258,11 @@ Prefab:
       propertyPath: up
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114254855371641440, guid: 05854c44e4fb48f439b759512f02e927,
+        type: 2}
+      propertyPath: puzzleCylinder
+      value: 
+      objectReference: {fileID: 1126545702}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05854c44e4fb48f439b759512f02e927, type: 2}
   m_IsPrefabAsset: 0

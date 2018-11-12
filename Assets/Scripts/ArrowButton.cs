@@ -7,18 +7,19 @@ using UnityEngine.EventSystems;
 public class ArrowButton : MonoBehaviour
 {
 	public Boolean up;
+    public PuzzleCylinder puzzleCylinder;
 
 	private void OnMouseUpAsButton()
 	{
 		//throw new System.NotImplementedException();
 		if (up)
 		{
-			GameObject.Find("GameManager").GetComponent<GameManager>().changeTestByDraggingUp(true);
+            puzzleCylinder.rotUp();
 			print("move up");
 		}
 		else
 		{
-			GameObject.Find("GameManager").GetComponent<GameManager>().changeTestByDraggingUp(false);
+            puzzleCylinder.rotDown();
 			print("move down");
 		}
 	}
