@@ -48,7 +48,7 @@ public class Puzzle : MonoBehaviour {
 		if (!givenLeaf[i]) {
 			leaves [i] = v;
 		} else {
-			throw new LeafIsGivenException("You cannot assign to a leaf that is given as part of the puzzle.");
+			// throw new LeafIsGivenException("You cannot assign to a leaf that is given as part of the puzzle.");
 		}
 	}
 
@@ -56,7 +56,7 @@ public class Puzzle : MonoBehaviour {
 		if (!givenOp[i]) {
 			ops [i] = v;
 		} else {
-			throw new OpIsGivenException("You cannot assign to an op that is given as part of the puzzle.");
+			// throw new OpIsGivenException("You cannot assign to an op that is given as part of the puzzle.");
 		}
 	}
 
