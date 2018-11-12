@@ -63,7 +63,9 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator NextScene() {
         yield return new WaitForSeconds(timeToTransition);
-        if (puzzleSolved()) {
+        if (nextScene == "") {
+            Application.Quit();
+        } else if (puzzleSolved()) {
             SceneManager.LoadScene(nextScene);
         } else {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
