@@ -48,31 +48,35 @@ public class PuzzleProvider : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () { 
 #if UNITY_EDITOR
-        Puzzle p = puzzle;
-        if ((leafProviders == null && nLeaves > 0) || (leafProviders != null && leafProviders.Length != nLeaves)) {
-            LeafProvider[] old = leafProviders;
-            leafProviders = new LeafProvider[nLeaves];
-            if (nLeaves > 0) {
-                if (old != null) Array.Copy(old, leafProviders, Math.Min(old.Length, leafProviders.Length));
-            } else {
-                leafProviders = null;
+        if (!Application.isPlaying) {
+            Puzzle p = puzzle;
+            if ((leafProviders == null && nLeaves > 0) || (leafProviders != null && leafProviders.Length != nLeaves)) {
+                LeafProvider[] old = leafProviders;
+                leafProviders = new LeafProvider[nLeaves];
+                if (nLeaves > 0) {
+                    if (old != null) Array.Copy(old, leafProviders, Math.Min(old.Length, leafProviders.Length));
+                } else {
+                    leafProviders = null;
+                }
             }
-        }
-        if ((opProviders == null && nLeaves > 1) || (opProviders != null && opProviders.Length != nLeaves - 1)) {
-            OpProvider[] old = opProviders;
-            if (nLeaves > 1) {
-                opProviders = new OpProvider[nLeaves - 1];
-                if (old != null) Array.Copy(old, opProviders, Math.Min(old.Length, opProviders.Length));
-            } else {
-                opProviders = null;
+            if ((opProviders == null && nLeaves > 1) || (opProviders != null && opProviders.Length != nLeaves - 1)) {
+                OpProvider[] old = opProviders;
+                if (nLeaves > 1) {
+                    opProviders = new OpProvider[nLeaves - 1];
+                    if (old != null) Array.Copy(old, opProviders, Math.Min(old.Length, opProviders.Length));
+                } else {
+                    opProviders = null;
+                }
             }
-        }
-        if (p.getNLeaves() != nLeaves) {
-            p.setNLeaves(nLeaves);
+            if (p.getNLeaves() != nLeaves) {
+                p.setNLeaves(nLeaves);
+            }
+            return;
         }
 #endif
+        UpdatePuzzle();
 	}
     
     public void UpdatePuzzle() {

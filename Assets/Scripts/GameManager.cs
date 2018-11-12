@@ -14,10 +14,18 @@ public class GameManager : MonoBehaviour
     public Puzzle puzzleTop;
     public Puzzle puzzleMid;
     public Puzzle puzzleBot;
+    
+    private bool puzzleTopSolved;
+    private bool puzzleMidSolved;
+    private bool puzzleBotSolved;
 
 	private int _currentTest;
 
 	private Dictionary<int, string> testMap = new Dictionary<int, string>();
+    
+    public bool puzzleSolved() {
+        return puzzleTopSolved && puzzleMidSolved && puzzleBotSolved;
+    }
 
 	// Use this for initialization
 	void Start ()
@@ -34,6 +42,10 @@ public class GameManager : MonoBehaviour
 			GameObject child = currentTestTree.GetChild(i).gameObject;
 			child.layer = child.name.Contains("Operator") ? 20 : 15;
 		}
+        
+        puzzleTopSolved = puzzleTop.eval();
+        puzzleMidSolved = puzzleMid.eval();
+        puzzleBotSolved = puzzleBot.eval();
 	}
 
 	private void defineTestDictionary()
