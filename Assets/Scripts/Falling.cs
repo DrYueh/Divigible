@@ -8,8 +8,8 @@ using System.Linq;
 
 
 public class Falling : MonoBehaviour {
-    public float fall_period;
-    public float rise_period;
+    private float fall_period { get { return manager.timeLimit; } }
+    private float rise_period { get { return manager.timeLimit / 5; } }
     public float top;
     public float bottom;
     public bool invert;

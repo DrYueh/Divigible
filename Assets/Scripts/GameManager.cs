@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int timeLimit = 90;
+    
 	public const int TEST_TOP    = 1;
 	public const int TEST_MIDDLE = 2;
 	public const int TEST_BOTTOM = 3;
@@ -22,6 +24,10 @@ public class GameManager : MonoBehaviour
 	private int _currentTest;
 
 	private Dictionary<int, string> testMap = new Dictionary<int, string>();
+    
+    public bool GameOver() {
+        return puzzleSolved() || Time.time > timeLimit;
+    }
     
     public bool puzzleSolved() {
         return puzzleTopSolved && puzzleMidSolved && puzzleBotSolved;
