@@ -32,7 +32,10 @@ public class DigitTileGenerator : MonoBehaviour
 		return fraction * totalDistance + start.x;
 	}
 
-	public Tile generateTile(Vector3 location, int value)
+	public Tile generateTile(Vector3 location, int value) {
+       return generateTile(location, Quaternion.identity, value); 
+    }
+	public Tile generateTile(Vector3 location, Quaternion rotation, int value)
 	{
 		// Get width of characters
 		_charWidth = getTemplate().gameObject.GetComponent<Renderer>().bounds.size.x;
@@ -40,7 +43,7 @@ public class DigitTileGenerator : MonoBehaviour
 
 		if ((value < 10) && (value >= 0))
 		{		
-			obj = Instantiate(prefab, location, Quaternion.identity);
+			obj = Instantiate(prefab, location, rotation);
 			obj.GetComponent<Tile>().value = value;
 			obj.GetComponent<Tile>().layerToTarget = 15;
 			float widthTotal = (value.ToString().Length) * _charWidth;
@@ -53,20 +56,21 @@ public class DigitTileGenerator : MonoBehaviour
 			GameObject digit = (GameObject)Instantiate(Resources.Load("Prefabs/" + value.ToString()));
 			digit.GetComponent<DigitValue>().integerValue = value;
 			digit.GetComponent<DigitValue>().orderOfMagnitude = 1;
+            digit.transform.rotation = obj.transform.rotation; // rotate BEFORE translating
 			digit.transform.parent = obj.transform;
 			digit.transform.position = obj.transform.position;
 		}
 
 		if (value >= 10)
 		{
-			obj = printLargerNumber(value, location);
+			obj = printLargerNumber(value, location, rotation);
 		}
 
 		return (obj != null) ? obj.GetComponent<Tile>() : null;
 	}
 
 	// Beware ye who ventures into this janky code and may god have mercy on you
-	private GameObject printLargerNumber(int value, Vector3 location)
+	private GameObject printLargerNumber(int value, Vector3 location, Quaternion rotation)
 	{
 		string valueAsString = value.ToString();
 		double magnitude = Math.Pow(10, valueAsString.Length-1);
@@ -94,7 +98,7 @@ public class DigitTileGenerator : MonoBehaviour
 			magnitude /= 10;
 		}
 		
-		GameObject obj = Instantiate(prefab, location, Quaternion.identity);
+		GameObject obj = Instantiate(prefab, location, rotation);
 		obj.GetComponent<Tile>().value = value;
 		obj.GetComponent<Tile>().layerToTarget = 15;
 		

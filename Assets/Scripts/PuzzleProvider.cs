@@ -31,7 +31,7 @@ public class PuzzleProvider : MonoBehaviour {
                 puzzle.setGivenLeaf(i / 2, l != null);
                 
                 if (l != null) {
-                    Tile tile = createTile(leafProviders[i / 2].transform.position, (int)l);
+                    Tile tile = createTile(leafProviders[i / 2].transform, (int)l);
                     tile.canDrag = false;
                 }
             } else {
@@ -40,7 +40,7 @@ public class PuzzleProvider : MonoBehaviour {
                 puzzle.setGivenOp((i - 1) / 2, o != null);
 
                 if (o != null) {
-                    Tile tile = createTile(opProviders[(i - 1) / 2].transform.position, (string)o);
+                    Tile tile = createTile(opProviders[(i - 1) / 2].transform, (string)o);
                     tile.canDrag = false;
                 }
             } 
@@ -96,11 +96,11 @@ public class PuzzleProvider : MonoBehaviour {
         return s == "." ? null : s;
     }
     
-    Tile createTile(Vector3 location, int value) {
-        return GameObject.Find("TileCreator").GetComponent<DigitTileGenerator>().generateTile(location, value);
+    Tile createTile(Transform transform, int value) {
+        return GameObject.Find("TileCreator").GetComponent<DigitTileGenerator>().generateTile(transform.position, transform.rotation, value);
     }
     
-    Tile createTile(Vector3 location, string op) {
-        return GameObject.Find("TileCreator").GetComponent<OpTileGenerator>().generateTile(location, op);
+    Tile createTile(Transform parent, string op) {
+        return GameObject.Find("TileCreator").GetComponent<OpTileGenerator>().generateTile(parent, op);
     }
 }
