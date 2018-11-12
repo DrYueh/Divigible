@@ -6,9 +6,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	public int TEST_TOP    = 1;
-	public int TEST_MIDDLE = 2;
-	public int TEST_BOTTOM = 3;
+	public const int TEST_TOP    = 1;
+	public const int TEST_MIDDLE = 2;
+	public const int TEST_BOTTOM = 3;
+    
+    public Puzzle puzzleTop;
+    public Puzzle puzzleMid;
+    public Puzzle puzzleBot;
 
 	private int _currentTest;
 
@@ -46,4 +50,13 @@ public class GameManager : MonoBehaviour
 		}
 		_currentTest = test;
 	}
+    
+    public Puzzle currentPuzzle() {
+        switch (_currentTest) {
+            case TEST_TOP: return puzzleTop;
+            case TEST_MIDDLE: return puzzleMid;
+            case TEST_BOTTOM: return puzzleBot;
+            default: return null;
+        }
+    }
 }
