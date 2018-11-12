@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-	private int _distanceFromCamera = 10;
+	private int _distanceFromCamera = 13;
 	
 	public int value;
 	public string tileOperator = null;
