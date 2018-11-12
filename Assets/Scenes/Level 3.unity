@@ -396,7 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimit: 90
   timeToTransition: 5
-  nextScene: ' Main Level 2'
+  nextScene: Level 4
   puzzleTop: {fileID: 134887902}
   puzzleMid: {fileID: 704967484}
   puzzleBot: {fileID: 119967055}
@@ -2691,7 +2691,7 @@ Prefab:
     - target: {fileID: 114061818769681410, guid: c372524af83cc7a4384b8cb2f397ccbf,
         type: 2}
       propertyPath: definition
-      value: '? + ? . ? = 2'
+      value: '? + ? . ? = 5'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c372524af83cc7a4384b8cb2f397ccbf, type: 2}
