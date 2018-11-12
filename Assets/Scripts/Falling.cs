@@ -8,11 +8,15 @@ using System.Linq;
 
 
 public class Falling : MonoBehaviour {
-    public float fall_factor;
-    public float rise_factor;
+    public float fall_period;
+    public float rise_period;
     public float top;
     public float bottom;
+    public bool invert;
     public GameManager manager;
+
+    private float fall_factor { get { return (invert ? -1 : 1) * (top - bottom) / fall_period; } }
+    private float rise_factor { get { return (invert ? -1 : 1) * (top - bottom) / rise_period; } }
     
     private void MoveY(float amount) {
         Vector3 pos = transform.position;
@@ -20,7 +24,7 @@ public class Falling : MonoBehaviour {
         transform.position = new Vector3(pos.x, y, pos.z);
     }
 
-    private void Fall (){
+    private void Fall () {
         MoveY(- Time.deltaTime * this.fall_factor);
     }
     
