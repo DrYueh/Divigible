@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using System.Security.AccessControl;
 using UnityEngine;
 
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
 			GameObject child = currentTestTree.GetChild(i).gameObject;
 			child.layer = child.name.Contains("Operator") ? 20 : 15;
 		}
+		rotateCylinder();
 	}
 
 	private void defineTestDictionary()
@@ -45,5 +47,41 @@ public class GameManager : MonoBehaviour
 			throw new IndexOutOfRangeException("test must be either 1, 2, or 3");
 		}
 		_currentTest = test;
+		invalidateTargets();
+	}
+
+	public void changeTestByDraggingUp(Boolean draggedUp)
+	{
+		if (draggedUp && _currentTest != TEST_BOTTOM)
+		{
+			setCurrentTest(_currentTest + 1);
+		} else if (!draggedUp && _currentTest != TEST_TOP)
+		{
+			setCurrentTest(_currentTest - 1);
+		}
+	}
+
+	private void rotateCylinder()
+	{
+		Vector3 cylinderAngles = GameObject.Find("Cylinder").transform.eulerAngles;
+		if (_currentTest == TEST_BOTTOM)
+		{
+			cylinderAngles = new Vector3(60, 0, 90);
+		} else if (_currentTest == TEST_MIDDLE)
+		{
+			cylinderAngles = new Vector3(0, 0, 90);
+		} else if (_currentTest == TEST_TOP)
+		{
+			cylinderAngles = new Vector3(-60, 0, 90);
+		}
+	}
+
+	private void invalidateTargets()
+	{
+		GameObject[] targets = GameObject.FindGameObjectsWithTag("target");
+		foreach (GameObject target in targets)
+		{
+			target.layer = 25;
+		}
 	}
 }
