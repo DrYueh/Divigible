@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -395,6 +395,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLimit: 90
+  timeToTransition: 5
+  nextScene: Level 3
   puzzleTop: {fileID: 134887902}
   puzzleMid: {fileID: 704967484}
   puzzleBot: {fileID: 119967055}
@@ -1789,7 +1791,7 @@ Prefab:
     - target: {fileID: 114061818769681410, guid: c372524af83cc7a4384b8cb2f397ccbf,
         type: 2}
       propertyPath: definition
-      value: '? + ? . ? = 9'
+      value: '? . ? + 2 = 1'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c372524af83cc7a4384b8cb2f397ccbf, type: 2}
@@ -2689,7 +2691,7 @@ Prefab:
     - target: {fileID: 114061818769681410, guid: c372524af83cc7a4384b8cb2f397ccbf,
         type: 2}
       propertyPath: definition
-      value: '? . ? . ? = 7'
+      value: '? . ? . ? = 6'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c372524af83cc7a4384b8cb2f397ccbf, type: 2}
@@ -3243,7 +3245,7 @@ Prefab:
     - target: {fileID: 114061818769681410, guid: c372524af83cc7a4384b8cb2f397ccbf,
         type: 2}
       propertyPath: definition
-      value: '? . ? + ? = 11'
+      value: '? + 1 . ? = 5'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c372524af83cc7a4384b8cb2f397ccbf, type: 2}
