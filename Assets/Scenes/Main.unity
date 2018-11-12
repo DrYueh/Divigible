@@ -2226,11 +2226,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47fd1ebc8c82740e580bfdb9dbf19280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fall_factor: 0.2
-  rise_factor: 0
+  fall_factor: 0.05
+  rise_factor: 0.5
   top: 5.00003
   bottom: 0.00003
-  manager: {fileID: 0}
+  manager: {fileID: 284173593}
 --- !u!23 &1949483882
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -13,50 +13,27 @@ public class Falling : MonoBehaviour {
     public float top;
     public float bottom;
     public GameManager manager;
-    private float height;
-    private float daTime;
     
-    private void Fall (){
-        float _y = this.height;
-        _y -= (this.daTime*this.fall_factor);
-        if (_y <= this.bottom){
-            _y = this.bottom;
-        }
-        else{
-            this.height = _y;
-        }
-        
+    private void MoveY(float amount) {
         Vector3 pos = transform.position;
-        pos.y = _y;
-        transform.position = pos;
+        float y = Mathf.Clamp(pos.y + amount, this.bottom, this.top); 
+        transform.position = new Vector3(pos.x, y, pos.z);
+    }
+
+    private void Fall (){
+        MoveY(- Time.deltaTime * this.fall_factor);
     }
     
     private void Rise (){
-        float _y = this.height;
-        _y += this.rise_factor;
-        if (_y >= this.top){
-            _y = this.top;
-        }
-        else{
-            this.height = _y;
-        }  
-        Vector3 pos = transform.position;
-        pos.y = _y;
-        transform.position = pos;
-    }
-
-    // Use this for initialization
-    void Start () {
-        this.daTime = Time.time;
-        this.height = this.top;        
+        MoveY(Time.deltaTime * this.rise_factor);
     }
 
     // Update is called once per frame
     void Update () {
-        this.daTime = Time.deltaTime;
-        Fall(); // update the timer object, check for Game end?
-        //if (this.manager.currentPuzzle().eval()){
-        //    Rise();
-        //}
+        if (this.manager.puzzleSolved()){
+            Rise();
+        } else {
+            Fall();
+        }
     }
 }
