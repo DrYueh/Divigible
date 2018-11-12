@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366699b6109656948ba79116c4d47c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 5
+  timeLimit: 90
   timeToTransition: 5
   nextScene: Main
   puzzleTop: {fileID: 134887902}
