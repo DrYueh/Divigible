@@ -97,10 +97,14 @@ public class PuzzleProvider : MonoBehaviour {
     }
     
     Tile createTile(Transform transform, int value) {
-        return GameObject.Find("TileCreator").GetComponent<DigitTileGenerator>().generateTile(transform.position, transform.rotation, value);
+        Tile tile = GameObject.Find("TileCreator").GetComponent<DigitTileGenerator>().generateTile(transform.position, transform.rotation, value);
+        tile.SetTarget(transform.gameObject);
+        return tile;
     }
     
     Tile createTile(Transform parent, string op) {
-        return GameObject.Find("TileCreator").GetComponent<OpTileGenerator>().generateTile(parent, op);
+        Tile tile = GameObject.Find("TileCreator").GetComponent<OpTileGenerator>().generateTile(parent, op);
+        tile.SetTarget(parent.gameObject);
+        return tile;
     }
 }

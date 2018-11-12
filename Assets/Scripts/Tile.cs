@@ -18,6 +18,18 @@ public class Tile : MonoBehaviour
 
 	public AudioClip clickInSound;
 
+    public void SetTarget(GameObject obj) {
+        _overTarget = true;
+        target = obj; 
+		if (obj == null) {
+            transform.SetParent(null);
+            targetPosition = _homePosition;
+        } else {
+            transform.SetParent(obj.transform);
+            targetPosition = target.transform.position;
+        }
+    }
+
 	void Start()
 	{
 		_homePosition = transform.position;
@@ -35,7 +47,9 @@ public class Tile : MonoBehaviour
 		if (target != null)
 		{
 			targetPosition = target.transform.position;
-		}
+		} else {
+            targetPosition = _homePosition;
+        }
 	}
 
 	private Boolean _dragging;
@@ -51,7 +65,7 @@ public class Tile : MonoBehaviour
 		rayCastToTarget();
 		if (!_overTarget)
 		{
-			target = null;
+			SetTarget(null);
 			targetPosition = _homePosition;
 		}
 	}
@@ -67,8 +81,7 @@ public class Tile : MonoBehaviour
 
 	void slide()
 	{
-		Vector3 position = _overTarget ? targetPosition : _homePosition;
-		slideToPoint(position);
+		slideToPoint(targetPosition);
 	}
 
 	void slideToPoint(Vector3 point)
@@ -91,14 +104,12 @@ public class Tile : MonoBehaviour
 
 		if (_overTarget && hitNotOccupied(hit))
 		{
-			target = hit.transform.gameObject;
-			transform.SetParent(hit.transform);
+			SetTarget(hit.transform.gameObject);
 			_weShouldPlayClickSound = true;
 		}
 		else
 		{
-			target = null;
-			transform.SetParent(null);
+            SetTarget(null);
 			_weShouldPlayClickSound = false;
 		}
 	}
@@ -110,7 +121,7 @@ public class Tile : MonoBehaviour
 
 	private Boolean lockedIn()
 	{
-		return ((transform.position == _homePosition) || (transform.position == targetPosition));
+		return transform.position == targetPosition;
 	}
 
 	private void playClickSound()
