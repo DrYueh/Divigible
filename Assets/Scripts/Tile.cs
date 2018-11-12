@@ -113,6 +113,5 @@ public class Tile : MonoBehaviour
 	private void playClickSound()
 	{
 		GetComponent<AudioSource>().Play();
-		print("click");
 	}
 }
