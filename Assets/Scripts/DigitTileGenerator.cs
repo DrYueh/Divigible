@@ -88,6 +88,7 @@ public class DigitTileGenerator : MonoBehaviour
 			digit.GetComponent<DigitValue>().integerValue = Int32.Parse(digitText.ToString());
 			digit.GetComponent<DigitValue>().orderOfMagnitude = magnitude;
 
+            digit.transform.rotation = rotation; // rotate BEFORE translating
 			digit.transform.localPosition = new Vector3(
 				-tileScaleX/2 + (location.x + (index * _charWidth) + _kerning) + _charWidth/2, 
 				location.y, location.z
