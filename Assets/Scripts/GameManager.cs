@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 using System.Security.AccessControl;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int timeLimit = 90;
+    public float timeLimit = 90;
+    public float timeToTransition = 5;
+    public string nextScene;
     
 	public const int TEST_TOP    = 1;
 	public const int TEST_MIDDLE = 2;
@@ -26,7 +29,7 @@ public class GameManager : MonoBehaviour
 	private Dictionary<int, string> testMap = new Dictionary<int, string>();
     
     public bool GameOver() {
-        return puzzleSolved() || Time.time > timeLimit;
+        return puzzleSolved() || Time.timeSinceLevelLoad > timeLimit;
     }
     
     public bool puzzleSolved() {
@@ -52,7 +55,20 @@ public class GameManager : MonoBehaviour
         puzzleTopSolved = puzzleTop.eval();
         puzzleMidSolved = puzzleMid.eval();
         puzzleBotSolved = puzzleBot.eval();
+        
+        if (GameOver() || puzzleSolved()) {
+            StartCoroutine("NextScene");
+        }
 	}
+    
+    private IEnumerator NextScene() {
+        yield return new WaitForSeconds(timeToTransition);
+        if (puzzleSolved()) {
+            SceneManager.LoadScene(nextScene);
+        } else {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
 
 	private void defineTestDictionary()
 	{
