@@ -142,6 +142,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &119967055 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114720331591248876, guid: c372524af83cc7a4384b8cb2f397ccbf,
+    type: 2}
+  m_PrefabInternal: {fileID: 1297161209}
+  m_Script: {fileID: 11500000, guid: e1b145b2dccc64733be893741722e89f, type: 3}
+--- !u!114 &134887902 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114720331591248876, guid: c372524af83cc7a4384b8cb2f397ccbf,
+    type: 2}
+  m_PrefabInternal: {fileID: 1881998307}
+  m_Script: {fileID: 11500000, guid: e1b145b2dccc64733be893741722e89f, type: 3}
 --- !u!1 &150065613
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,9 +314,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366699b6109656948ba79116c4d47c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleTop: {fileID: 0}
-  puzzleMid: {fileID: 0}
-  puzzleBot: {fileID: 0}
+  puzzleTop: {fileID: 134887902}
+  puzzleMid: {fileID: 704967484}
+  puzzleBot: {fileID: 119967055}
 --- !u!1 &484850453
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,6 +469,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &704967484 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114720331591248876, guid: c372524af83cc7a4384b8cb2f397ccbf,
+    type: 2}
+  m_PrefabInternal: {fileID: 2138475704}
+  m_Script: {fileID: 11500000, guid: e1b145b2dccc64733be893741722e89f, type: 3}
 --- !u!1 &729887315
 GameObject:
   m_ObjectHideFlags: 0
