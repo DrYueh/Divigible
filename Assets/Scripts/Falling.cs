@@ -12,7 +12,7 @@ public class Falling : MonoBehaviour {
     public float rise_factor;
     public float top;
     public float bottom;
-    public Puzzle puzzle;
+    public GameManager manager;
     private float height;
     private float daTime;
     
@@ -55,8 +55,8 @@ public class Falling : MonoBehaviour {
     void Update () {
         this.daTime = Time.deltaTime;
         Fall(); // update the timer object, check for Game end?
-        if (this.puzzle.eval()){
-            Rise();
-        }
+        //if (this.manager.currentPuzzle().eval()){
+        //    Rise();
+        //}
     }
 }
