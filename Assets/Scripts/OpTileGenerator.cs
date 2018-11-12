@@ -9,7 +9,7 @@ public class OpTileGenerator : MonoBehaviour {
     public GameObject divPrefab;
     public GameObject eqPrefab; 
     
-    public Tile generateTile(Vector3 location, string op) {
+    public Tile generateTile(Transform parent, string op) {
         GameObject prefab = null;
         switch (op) {
             case "+": prefab = addPrefab; break;
@@ -20,7 +20,8 @@ public class OpTileGenerator : MonoBehaviour {
             default: return null;
         }
         GameObject obj = Instantiate(prefab);
-        obj.transform.position = location;
+        obj.transform.position = parent.transform.position;
+        obj.transform.rotation = parent.transform.rotation;
         obj.GetComponent<Tile>().layerToTarget = 20;
         
         return obj.GetComponent<Tile>();
