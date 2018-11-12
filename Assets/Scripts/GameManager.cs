@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 	void Start ()
 	{
 		defineTestDictionary();
-		_currentTest = TEST_MIDDLE;
+		setCurrentTest(TEST_MIDDLE);
 	}
 	
 	// Update is called once per frame
