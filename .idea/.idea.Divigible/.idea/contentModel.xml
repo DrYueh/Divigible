@@ -10,6 +10,7 @@
           <e p="DigitTileGenerator.cs" t="Include" />
           <e p="DigitValue.cs" t="Include" />
           <e p="Falling.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
           <e p="GenerateResultTile.cs" t="Include" />
           <e p="Joystick.cs" t="Include" />
           <e p="LeafProvider.cs" t="Include" />
