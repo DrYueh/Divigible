@@ -396,7 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimit: 90
   timeToTransition: 5
-  nextScene: ' Main Level 2'
+  nextScene: Main Level 2
   puzzleTop: {fileID: 134887902}
   puzzleMid: {fileID: 704967484}
   puzzleBot: {fileID: 119967055}
