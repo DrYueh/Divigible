@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1854253308648390}
+  m_IsPrefabAsset: 1
+--- !u!1 &1854253308648390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4620311805136424}
+  - component: {fileID: 114266528669167468}
+  - component: {fileID: 114585277573542202}
+  m_Layer: 0
+  m_Name: TileCreator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4620311805136424
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1854253308648390}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.663271, y: -2.64, z: -1.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114266528669167468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1854253308648390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4052ede644867248a1ca3aae99c90e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1732476029999716, guid: fdbc204cbabce5d48ae5f33e21a3f696, type: 2}
+  numberOfObjects: 10
+  start: {x: -7, y: -2.2, z: -0.5}
+  end: {x: 7.8, y: -5, z: 0}
+--- !u!114 &114585277573542202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1854253308648390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568a447d11b3985428e91b3e63184a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addPrefab: {fileID: 1585089590804226, guid: 192a45ba04a3cad429df86052fd8fb7a, type: 2}
+  subPrefab: {fileID: 1838685056490224, guid: a7b396eaad65a04469580308df5365d2, type: 2}
+  multPrefab: {fileID: 1346147315744588, guid: 6085ebb8582669648bd436b3c0d0386d, type: 2}
+  divPrefab: {fileID: 1160271410803404, guid: 0745a9c9bd8de654a8f09d6d31a819ef, type: 2}
+  eqPrefab: {fileID: 1408494417809440, guid: 49af9ff9f487c634ab5cf4a2d30730cf, type: 2}
