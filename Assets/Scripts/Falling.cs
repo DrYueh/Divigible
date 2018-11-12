@@ -12,6 +12,7 @@ public class Falling : MonoBehaviour {
     public float rise_factor;
     public float top;
     public float bottom;
+    public Puzzle puzzle;
     private float height;
     private float daTime;
     
@@ -21,9 +22,6 @@ public class Falling : MonoBehaviour {
         if (_y <= this.bottom){
             _y = this.bottom;
         }
-        else if (_y >= this.top){
-            _y = this.top;
-        }
         else{
             this.height = _y;
         }
@@ -32,10 +30,20 @@ public class Falling : MonoBehaviour {
         pos.y = _y;
         transform.position = pos;
     }
-//    private float Rise (){ //pass score of puzzel into it?
-//        int pos = this.height;
-//        pos += 
-//    }
+    
+    private void Rise (){
+        float _y = this.height;
+        _y += this.rise_factor;
+        if (_y >= this.top){
+            _y = this.top;
+        }
+        else{
+            this.height = _y;
+        }  
+        Vector3 pos = transform.position;
+        pos.y = _y;
+        transform.position = pos;
+    }
 
     // Use this for initialization
     void Start () {
@@ -47,6 +55,8 @@ public class Falling : MonoBehaviour {
     void Update () {
         this.daTime = Time.deltaTime;
         Fall(); // update the timer object, check for Game end?
-        //print(this.height);
+        if (this.puzzle.eval()){
+            Rise();
+        }
     }
 }
