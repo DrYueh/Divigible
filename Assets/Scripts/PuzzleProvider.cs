@@ -24,7 +24,7 @@ public class PuzzleProvider : MonoBehaviour {
         
         puzzle.setNLeaves(bits.Length - 1 / 2);
         puzzle.setLeaf(0, leaf(bits[0]));
-        for (int i = 0; i < bits.Length; i += 2) {
+        for (int i = 0; i < bits.Length; ++i) {
             if (i % 2 == 0) {
                 int? l = leaf(bits[i]);
                 puzzle.setLeaf(i / 2, l);
@@ -40,7 +40,8 @@ public class PuzzleProvider : MonoBehaviour {
                 puzzle.setGivenOp((i - 1) / 2, o != null);
 
                 if (o != null) {
-                    // TODO generate tile
+                    Tile tile = createTile(opProviders[(i - 1) / 2].transform.position, (string)o);
+                    tile.canDrag = false;
                 }
             } 
         }
@@ -97,5 +98,9 @@ public class PuzzleProvider : MonoBehaviour {
     
     Tile createTile(Vector3 location, int value) {
         return GameObject.Find("TileCreator").GetComponent<DigitTileGenerator>().generateTile(location, value);
+    }
+    
+    Tile createTile(Vector3 location, string op) {
+        return GameObject.Find("TileCreator").GetComponent<OpTileGenerator>().generateTile(location, op);
     }
 }
