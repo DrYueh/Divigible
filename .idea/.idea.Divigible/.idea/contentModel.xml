@@ -7,14 +7,15 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
+          <e p="ArrowButton.cs" t="Include" />
           <e p="DigitTileGenerator.cs" t="Include" />
           <e p="DigitValue.cs" t="Include" />
           <e p="Falling.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="GenerateResultTile.cs" t="Include" />
-          <e p="Joystick.cs" t="Include" />
           <e p="LeafProvider.cs" t="Include" />
           <e p="OpProvider.cs" t="Include" />
+          <e p="OpTileGenerator.cs" t="Include" />
           <e p="Puzzle.cs" t="Include" />
           <e p="PuzzleProvider.cs" t="Include" />
           <e p="PuzzleSubmit.cs" t="Include" />
